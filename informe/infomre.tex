@@ -23,7 +23,7 @@
 \maketitle
 
 \begin{abstract} %Algo asi
-Este articulo realizara estudio de la seguridad en la arquitectura del hardware, profundizara en temas como las vulnerabilidades de los actuales procesadores, sus respectivas mitigaciones y por ultimo se detallaran los campos de investigacion en proceso que ayudan a prevenir o preparanos ante estos ataues maliciosos.
+Este articulo realizara estudio de la seguridad en la arquitectura del hardware, profundizara en temas como las vulnerabilidades de los actuales procesadores, sus respectivas mitigaciones y por ultimo se detallaran los campos de investigacion en proceso que ayudan a prevenir o preparanos ante estos ataques maliciosos.
 \end{abstract}
 
 \begin{IEEEkeywords} %Ubicar bien los temas.
@@ -31,29 +31,30 @@ Predicciones de saltos, ejecucion fuera de orden, ejecucion especulativa, Meltod
 \end{IEEEkeywords}
 
 
-\section{Introduction}
-\IEEEPARstart{W}{elcome} to the updated and simplified documentation to using the IEEEtran \LaTeX \ class file. The IEEE has examined hundreds of author submissions using this package to help formulate this easy to follow guide. We will cover the most commonly used elements of a journal article. For less common elements we will refer back to the ``IEEEtran\_HOWTO.pdf''.
+\section{Introduccion}
+\IEEEPARstart{L}{a} seguridad de la informacion es un tema cada vez mas revelante en la era digital. Los procesadores son el corazon de cualquier sistema informatico, y su seguridad es crucial para garantizar la integridad y la confidencialidad de los datos. Sin embargo, la complejidad de la microarquitectura de los procesadores modernos y la constante evolucion de las amenazas informaticas hacen que la seguridad de estos dispositivos sea un desafio cada vez mas complejo. 
 
-This document applies to version 1.8b of IEEEtran. 
-
-The IEEEtran template package contains the following example files: 
-\begin{list}{}{}
-\item{bare\_jrnl.tex}
-\item{bare\_conf.tex}
-\item{bare\_jrnl\_compsoc.tex}
-\item{bare\_conf\_compsoc.tex}
-\item{bare\_jrnl\_comsoc.tex}
-\end{list}
-These are ``bare bones" templates to quickly understand the document structure.  
-
-It is assumed that the reader has a basic working knowledge of \LaTeX. Those who are new to \LaTeX \ are encouraged to read Tobias Oetiker's ``The Not So Short Introduction to \LaTeX '', available at: \url{http://tug.ctan.org/info/lshort/english/lshort.pdf} which provides an overview of working with \LaTeX.   
-
-\section{The Design, Intent and \\ Limitations of the Templates}
-\noindent The templates are intended to {\bf{approximate the final look and page length of the articles/papers}}. Therefore, {\bf{they are NOT intended to be the final produced work that is displayed in print or on IEEEXplore\textsuperscript{\textregistered}}}. They will help to give the authors an approximation of the number of pages that will be in the final version. The structure of the \LaTeX files, as designed, enable easy conversion to XML for the composition systems used by the IEEE's outsource vendors. The XML files are used to produce the final print/IEEEXplore\textsuperscript{\textregistered} pdf and then converted to HTML for IEEEXplore\textsuperscript{\textregistered}. Have you looked at your article/paper in the HTML version?
+\section{Vulnerabilidades}
+\subsection{Spectre}
+Spectre induce a una victima a realizar especulativamente operaciones que no ocurririan durante el procesamiento en orden estrictamente serializado de las instrucciones del programa, y que filtran informacion confidencial de la victima a traves de un canal encubierto al adversario.
+Los ataques  de spectre se llevan a cabo en tres pasos:
+\begin{itemize}
+  \item La fase de configuracion, en la que el procesador esta mal entrenado para hacer una prediccion especulativa erronea explotable.
+  \item El procesador ejecuta especulativamente instrucciones desde el contexto de destino en un canal encubierto de microarquitectura.
+  \item Los datos confidenciales se recuperan. Esto se puede hacer cronometrando el acceso a direcciones de memoria en la memoria cache de la CPU.
+\end{itemize}
+\noindent 
+\subsubsection{\textbf{Spectre-PHT(Omision de verificacion de limites)}}
+\noindent Explota la ejecución especulativa tras una comprobación de límites en una rama condicional. Aunque el procesador descarta las instrucciones especulativas si la rama fue mal predicha, los cambios en la caché permanecen.
+\noindent Un atacante puede aprovechar esto cargando datos en la caché durante la ejecución especulativa y luego usar un canal lateral de caché para filtrar información sensible, incluso si el código parece estar correctamente escrito y no permite accesos fuera de los límites en condiciones normales.
+\subsubsection{\textbf{Spectre-BTB(Inyeccion de destino de rama)}}
+\noindent Aprovecha la ejecución especulativa de instrucciones tras una rama indirecta. Al influir en el destino de esa rama indirecta, un atacante puede forzar que se ejecute código malicioso de manera especulativa. Luego, el atacante utiliza un canal lateral basado en la caché para recuperar datos sensibles.
+\noindent Para garantizar un rendimiento elevado, los predictores de ramas utilizan el historial de ramas previas para predecir el destino de la rama. Sin embargo, este historial no está filtrado por el nivel de privilegio ni por el ID del proceso, lo que permite a un atacante desde un nivel de privilegio o proceso diferente entrenar incorrectamente el predictor de ramas y forzar la ejecución especulativa de un gadget.
 
 \section{\LaTeX \ Distributions: Where to Get Them}
 \noindent IEEE recommends using the distribution from the \TeX User Group at \url{http://www.tug.org}. You can join TUG and obtain a DVD distribution or download for free  from the links provided on their website: \url{http://www.tug.org/texlive/}. The DVD includes distributions for Windows, Mac OS X and Linux operating systems.
  
+
 \section{Where to get the IEEEtran Templates}
 \noindent The {\bf{IEEE Template Selector}} will always have the most up-to-date versions of the \LaTeX\ and MSWord templates. Please see: \url{https://template-selector.ieee.org/} and follow the steps to find the correct template for your intended publication. Many publications use the IEEETran LaTeX templates, however, some publications have their own special templates. Many of these are  based on IEEEtran, but may have special instructions that vary slightly from those in this document.
 
