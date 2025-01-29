@@ -35,15 +35,23 @@ Predicciones de saltos, ejecucion especulativa, Meltodown, Spectre y sus variant
 \IEEEPARstart{L}{a} seguridad de la informacion es un tema cada vez mas revelante en la era digital. Los procesadores son el corazon de cualquier sistema informatico, y su seguridad es crucial para garantizar la integridad y la confidencialidad de los datos. Sin embargo, la complejidad de la microarquitectura de los procesadores modernos y la constante evolucion de las amenazas informaticas hacen que la seguridad de estos dispositivos sea un desafio cada vez mas complejo. 
 
 \section{Optimizaciones}
-Dos optimizaciones clave de los procesadores modernos son: la \textbf{ejecución especulativa} y la \textbf{predicción de bifurcaciones}(Branch Prediction). 
+
+El rendimiento de los procesadores modernos ha mejorado gracias a varias técnicas. Como ya no es tan fácil seguir reduciendo el tamaño de los transistores o aumentar la frecuencia del reloj, se han buscado otras soluciones a nivel de arquitectura. La clave está en el paralelismo: optimizar y extender las rutas de instrucciones para ejecutar más operaciones al mismo tiempo dentro de un hilo, además de aumentar la cantidad de núcleos físicos y lógicos en un procesador.
+
+Las optimizaciones claves de los procesadores modernos son: la \textbf{ejecución especulativa}, \textbf{ejecución fuera de orden}y la \textbf{predicción de bifurcaciones}(Branch Prediction). 
 \begin{itemize}
   \item \textbf{Ejecución Especulativa}: Permite al procesador ejecutar instrucciones "por adelantado" \textbf{(aprovechando el paralelismo y la predicción de bifurcaciones)\cite{ref}} para evitar tiempos de espera. Si la predicción es incorrecta, los resultados especulativos se descartan, aunque pueden dejar rastros en la caché, lo que ha dado lugar a vulnerabilidades.
+  \item \textbf{Ejecución Fuera de Orden}: Aprovecha al máximo los recursos del procesador ejecutando instrucciones en paralelo en distintas unidades de ejecución. Mientras una unidad está ocupada, las demás pueden procesar otras instrucciones de forma simultánea, siempre que no rompa las reglas arquitectónicas dadas por el hardware.
   \item \textbf{Predicción de Bifurcaciones}: Es una técnica utilizada para decidir qué rama de un condicional es más probable que se ejecute. Esto optimiza el flujo de instrucciones al anticiparse al resultado de la condición, evitando interrupciones en el pipeline del procesador y mejorando el rendimiento general.
   \end{itemize}
   
   %Ref : Hennessy, J. L., & Patterson, D. A. "Computer Architecture: A Quantitative Approach", 6th Edition. ---- Branch Prediction | ScienceDirect (web)
 
 Los procesadores modernos implementan estas técnicas de optimización para mejorar el rendimiento. Sin embargo, estas mismas técnicas pueden ser explotadas para crear \textbf{canales laterales} de los cuales hablaremos mas adelante en la seccion de \textbf{Vulnerabilidades}. 
+
+
+\section{Niveles de Privilegios}
+
 
 \section{Vulnerabilidades}
 La seguridad de los sistemas puede verse comprometida por distintos tipos de vulnerabilidades. En este artículo, haremos hincapié en los \textbf{ataques de canales laterales} (del inglés Side Channel Attacks), que explotan información derivada de las condiciones físicas o lógicas durante la ejecución de un sistema para extraer datos sensibles.
@@ -54,8 +62,11 @@ La seguridad de los sistemas puede verse comprometida por distintos tipos de vul
 
     \textbf{Condiciones lógicas}: Los comportamientos de la implementación del sistema, como el estado de la memoria caché, el mapeo de memoria o los patrones de acceso a recursos compartidos.
 
-Estas fugas de información indirecta son los llamados \textbf{canales laterales}, que permiten al atacante obtener datos secretos sin acceder directamente a ellos.
-  %ref: Introduction to Side-Channel Attacks; Paul Kocher, Joshua Jaffe, Benjamin Jun. ---- 
+Estas fugas de información indirecta son los llamados \textbf{canales laterales}, que permiten al atacante obtener datos secretos sin acceder directamente a ellos. \newline
+%Dos de los casos mas conocidos de estos tipos de \textit{\textbf{exploits}} son \textbf{Meltdown} y \textbf{Spectre} que se detallaran a continuacion:
+Existen muchismos casos de canales laterales que se pueden explotar pero en este informe solo vamos a dentrar en el canal de temporizacion de cache (cahce timing side-channel), el cual es utilizado por Meltdown y Spectre.
+                                                                  %ref[casos de canales laterales]
+%ref: Introduction to Side-Channel Attacks; Paul Kocher, Joshua Jaffe, Benjamin Jun. ---- 
 \subsection{Spectre}
 Spectre induce a una victima a realizar especulativamente operaciones que no ocurririan durante el procesamiento en orden estrictamente serializado de las instrucciones del programa, y que filtran informacion confidencial de la victima a traves de un canal encubierto al adversario.
 Los ataques  de spectre se llevan a cabo en tres pasos:
