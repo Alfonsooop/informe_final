@@ -51,9 +51,24 @@ Los procesadores modernos implementan estas técnicas de optimización para mejo
 
 
 \section{Niveles de Privilegios}
+Antes de hablar de las vulnerabilidades por explotación de canales laterales de caché aprovechando las optimizaciones del microprocesador, es fundamental entender cómo se gestionan los privilegios de las instrucciones para interactuar con la CPU y la memoria, ya que esto influye directamente en la seguridad del sistema y en la posibilidad de ataques que exploten estas interacciones.
+\newline
+En la Fig. 1 se pueden apreciar 4 anillos de seguridad en las arquitecturas x86, aunque normalmente los sistemas operativos solo utilizan el nivel 0 y el nivel 3 lo que les permite utilizar unicamente 1 bit para verificar el modo en el cual debe trabajar el procesador.
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\linewidth]{rings.jpg}
+  \caption{\small Distribucion jerarquica de los  privilegios.}
+  \label{fig:etiqueta}
+\end{figure}
+\newline
+Cada modo tiene una región de memoria mapeada diferente; ese aislamiento está dado por la \textbf{virtualización de la memoria}. Por lo tanto, el modo usuario no puede acceder a la misma información que el modo kernel, al menos de manera directa.
 
+El \textbf{modo usuario} es el responsable del anillo 3, el cual solo ejecuta código a nivel software. Es decir, está aislado tanto del sistema operativo como del kernel; sus recursos son limitados y, por cada intento de modificación de memoria, manejo de archivos o contacto con el hardware, se realiza una \textbf{syscall}. Estas llamadas al sistema permiten al programa cambiar al modo kernel, dejando que el sistema operativo termine con las instrucciones necesarias y luego vuelva al modo usuario sin violar la seguridad.
+De aquí podemos deducir que, en el anillo de nivel 0, se ejecuta únicamente código a nivel kernel. Este nivel es administrado por el \textbf{modo kernel} y es el nivel de seguridad más importante. El modo kernel tiene contacto directo con el hardware, es decir, tiene acceso a todo el mapeado de la memoria, incluidas las tablas de páginas, donde se encuentra nuestra información más sensible, como contraseñas, credenciales y demás datos privados.
+Por lo tanto, el principal problema aquí es que, si algún programa malicioso llegara a ejecutar instrucciones en modo kernel o explotara la ejecución especulativa y fuera de orden para ejecutar instrucciones sin los privilegios necesarios, se pondría en riesgo toda nuestra seguridad, ya que podrían acceder a las páginas del kernel sin siquiera tener los privilegios adecuados.
 
 \section{Vulnerabilidades}
+
 La seguridad de los sistemas puede verse comprometida por distintos tipos de vulnerabilidades. En este artículo, haremos hincapié en los \textbf{ataques de canales laterales} (del inglés Side Channel Attacks), que explotan información derivada de las condiciones físicas o lógicas durante la ejecución de un sistema para extraer datos sensibles.
 
 ¿A qué nos referimos con "condiciones físicas y lógicas"? A que estos ataques no se basan en vulnerabilidades directas en algoritmos o software, sino en la medición de:
@@ -149,7 +164,7 @@ Please see the ``IEEEtran\_HOWTO.pdf'' for specific information on coding author
 \begin{verbatim}
 \markboth{Journal of Quantum Electronics, 
 Vol. 1, No. 1, January 2021}
-{Author1, Author2, 
+{Author1, Author2, }
 \MakeLowercase{\textit{(et al.)}: 
 Paper Title}
 \end{verbatim}

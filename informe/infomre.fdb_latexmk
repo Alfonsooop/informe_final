@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1738163040.79747 "/home/alfonsop/facultad/orga/informe_final/informe/infomre.tex" "infomre.pdf" "infomre" 1738163041.23513 0
-  "/home/alfonsop/facultad/orga/informe_final/informe/infomre.tex" 1738163040.14418 38685 7e7916d8b2ea7086f19d7f42e2b76eb9 ""
+["pdflatex"] 1738277447.13857 "/home/alfonsop/facultad/orga/informe_final/informe/infomre.tex" "infomre.pdf" "infomre" 1738277447.80215 0
+  "/home/alfonsop/facultad/orga/informe_final/informe/infomre.tex" 1738277447.30936 41167 7a2431e2c42ea590ef176e1cc36491f3 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/adobe/courier/pcrr7t.tfm" 1136768653 960 379cc0019370a9e0208a0a3f949f847a ""
@@ -116,8 +116,9 @@
   "/usr/local/texlive/2024/texmf.cnf" 1737083163.67825 455 5b996dcaa0eb4ef14a83b026bc0a008c ""
   "IEEEtran.cls" 1737374145.7706 281957 5b2e4fa15b0f7eabb840ebf67df4c0f7 ""
   "fig1.png" 1737374136.83655 37986 d648cf25b5ad3b3d5099b08ddbf9e2dd ""
-  "infomre.aux" 1738163041.17318 6610 6f18a47ec3d1c348ed18042827481099 "pdflatex"
-  "infomre.tex" 1738163040.14418 38685 7e7916d8b2ea7086f19d7f42e2b76eb9 ""
+  "infomre.aux" 1738277447.70734 6844 a32c664cd6a474c9ee935f2f3167999e "pdflatex"
+  "infomre.tex" 1738277447.30936 41167 7a2431e2c42ea590ef176e1cc36491f3 ""
+  "rings.jpg" 1738248519.43223 151051 91bcb225a36bf60773b5b082838b9e85 ""
   (generated)
   "infomre.aux"
   "infomre.log"

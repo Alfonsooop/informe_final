@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2025.1.17)  29 JAN 2025 12:04
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2025.1.17)  30 JAN 2025 19:50
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -336,131 +336,136 @@ LaTeX Warning: Citation `ref' on page 1 undefined on input line 43.
 
 
 
+<rings.jpg, id=1, 642.4pt x 463.7325pt>
+File: rings.jpg Graphic file (type jpg)
+<use rings.jpg>
+Package pdftex.def Info: rings.jpg  used on input line 59.
+(pdftex.def)             Requested size: 252.94499pt x 182.59563pt.
 
 
 [1{/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/base/8r.enc}
 
 
-]
+ <./rings.jpg>]
+
 LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <9.53561> not available
-(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 79.
+(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 94.
 LaTeX Font Info:    Font shape `OT1/phv/b/it' in size <9.53561> not available
-(Font)              Font shape `OT1/phv/b/sl' tried instead on input line 79.
+(Font)              Font shape `OT1/phv/b/sl' tried instead on input line 94.
 
 
-LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 105.
-(/usr/local/texlive/2024/texmf-dist/tex/latex/psnfss/ot1pcr.fd
+[2]
+LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 120.
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
-Underfull \hbox (badness 10000) in paragraph at lines 105--106
+Underfull \hbox (badness 10000) in paragraph at lines 120--121
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 107--108
+Underfull \hbox (badness 10000) in paragraph at lines 122--123
 
  []
 
 
-Overfull \hbox (17.1447pt too wide) in paragraph at lines 109--110
+Overfull \hbox (17.1447pt too wide) in paragraph at lines 124--125
 []$\OMS/cmsy/m/n/10 n$\OT1/pcr/m/n/9.53561 documentclass[10pt,journal,compsoc]IEEEtran 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 109--110
+Underfull \hbox (badness 10000) in paragraph at lines 124--125
 
  []
 
 
-Overfull \hbox (5.70198pt too wide) in paragraph at lines 111--112
+Overfull \hbox (5.70198pt too wide) in paragraph at lines 126--127
 []$\OMS/cmsy/m/n/10 n$\OT1/pcr/m/n/9.53561 documentclass[conference,compsoc]IEEEtran 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 111--112
+Underfull \hbox (badness 10000) in paragraph at lines 126--127
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 113--114
+Underfull \hbox (badness 10000) in paragraph at lines 128--129
 
  []
 
 
-Underfull \hbox (badness 2556) in paragraph at lines 144--146
+Underfull \hbox (badness 2556) in paragraph at lines 159--161
 \OT1/ppl/m/n/9.53561 tify IEEE mem-ber-ship sta-tus. Please see the ``IEEE-
  []
 
 
 
-[2]
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 202--203
-
- []
-
-<fig1.png, id=19, 188.20313pt x 173.89969pt>
-File: fig1.png Graphic file (type png)
-<use fig1.png>
-Package pdftex.def Info: fig1.png  used on input line 237.
-(pdftex.def)             Requested size: 180.67499pt x 166.95505pt.
 
 
 [3]
-LaTeX Font Info:    Calculating math sizes for size <8.03> on input line 281.
+Underfull \hbox (badness 10000) in paragraph at lines 217--218
 
-Underfull \hbox (badness 1377) in paragraph at lines 298--299
+ []
+
+<fig1.png, id=25, 188.20313pt x 173.89969pt>
+File: fig1.png Graphic file (type png)
+<use fig1.png>
+Package pdftex.def Info: fig1.png  used on input line 252.
+(pdftex.def)             Requested size: 180.67499pt x 166.95505pt.
+
+
+LaTeX Font Info:    Calculating math sizes for size <8.03> on input line 296.
+
+Underfull \hbox (badness 1377) in paragraph at lines 313--314
 \OT1/ppl/m/n/9.53561 nu-mer-ous op-tions added to IEEE-tran to en-hance the
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 298--299
+Underfull \hbox (badness 10000) in paragraph at lines 313--314
 
  []
-
-
 
 
 
 [4 <./fig1.png>]
-Underfull \hbox (badness 2376) in paragraph at lines 380--381
+
+
+Underfull \hbox (badness 2376) in paragraph at lines 395--396
 \OT1/ppl/b/n/9.53561 References Sim-pli-fied: \OT1/ppl/m/n/9.53561 A sim-ple way of com-pos-ing
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 380--381
+Underfull \hbox (badness 10000) in paragraph at lines 395--396
 
- []
-
-
-
-LaTeX Font Info:    Trying to load font information for TS1+ppl on input line 469.
-(/usr/local/texlive/2024/texmf-dist/tex/latex/psnfss/ts1ppl.fd
-File: ts1ppl.fd 2001/06/04 font definitions for TS1/ppl.
-)
-Underfull \hbox (badness 2573) in paragraph at lines 483--484
-[]\OT1/ppl/m/n/9.53561 Further ex-am-ples can be seen at $http : / / journals .
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 483--484
-\OT1/ppl/m/n/9.53561 ieeeauthorcenter . ieee . org / wp-[]content / uploads / sites / 7 /
  []
 
 
 
 [5]
-Underfull \hbox (badness 10000) in paragraph at lines 507--509
+LaTeX Font Info:    Trying to load font information for TS1+ppl on input line 484.
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/psnfss/ts1ppl.fd
+File: ts1ppl.fd 2001/06/04 font definitions for TS1/ppl.
+)
+Underfull \hbox (badness 2573) in paragraph at lines 498--499
+[]\OT1/ppl/m/n/9.53561 Further ex-am-ples can be seen at $http : / / journals .
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 498--499
+\OT1/ppl/m/n/9.53561 ieeeauthorcenter . ieee . org / wp-[]content / uploads / sites / 7 /
+ []
+
+
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 522--524
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 510--512
+Underfull \hbox (badness 10000) in paragraph at lines 525--527
 
  []
-
-
 
 
 
@@ -469,41 +474,35 @@ Underfull \hbox (badness 10000) in paragraph at lines 510--512
 
 
 [7]
-LaTeX Font Info:    Trying to load font information for OMS+pcr on input line 764.
- (/usr/local/texlive/2024/texmf-dist/tex/latex/psnfss/omspcr.fd
+
+LaTeX Font Info:    Trying to load font information for OMS+pcr on input line 779.
+(/usr/local/texlive/2024/texmf-dist/tex/latex/psnfss/omspcr.fd
 File: omspcr.fd 
 )
 LaTeX Font Info:    Font shape `OMS/pcr/m/n' in size <9.53561> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 764.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 779.
 
-Underfull \hbox (badness 10000) in paragraph at lines 780--781
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 785--786
+Underfull \hbox (badness 10000) in paragraph at lines 795--796
 
  []
 
 
+Underfull \hbox (badness 10000) in paragraph at lines 800--801
+
+ []
 
 
-
-
-Package balance Warning: You have called \balance in second column
-(balance)                Columns might not be balanced.
 
 [8]
+
 File: fig1.png Graphic file (type png)
 <use fig1.png>
-Package pdftex.def Info: fig1.png  used on input line 894.
+Package pdftex.def Info: fig1.png  used on input line 909.
 (pdftex.def)             Requested size: 72.27031pt x 66.77777pt.
 File: fig1.png Graphic file (type png)
 <use fig1.png>
-Package pdftex.def Info: fig1.png  used on input line 894.
+Package pdftex.def Info: fig1.png  used on input line 909.
 (pdftex.def)             Requested size: 72.27031pt x 66.77777pt.
-
-
 
 
 [9] (./infomre.aux)
@@ -517,18 +516,18 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 4741 strings out of 473207
- 82450 string characters out of 5716288
- 485743 words of memory out of 5000000
- 27900 multiletter control sequences out of 15000+600000
- 616996 words of font info for 162 fonts, out of 8000000 for 9000
+ 4751 strings out of 473207
+ 82600 string characters out of 5716288
+ 487765 words of memory out of 5000000
+ 27909 multiletter control sequences out of 15000+600000
+ 618756 words of font info for 164 fonts, out of 8000000 for 9000
  1145 hyphenation exceptions out of 8191
  57i,12n,65p,649b,353s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/zapfding/uzdr.pfb>
-Output written on infomre.pdf (9 pages, 311172 bytes).
+Output written on infomre.pdf (9 pages, 459215 bytes).
 PDF statistics:
- 149 PDF objects out of 1000 (max. 8388607)
- 90 compressed objects within 1 object stream
+ 152 PDF objects out of 1000 (max. 8388607)
+ 91 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 18 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 23 words of extra memory for PDF output out of 10000 (max. 10000000)
 
