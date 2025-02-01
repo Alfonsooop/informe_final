@@ -83,20 +83,51 @@ Existen muchismos casos de canales laterales que se pueden explotar pero en este
                                                                   %ref[casos de canales laterales]
 %ref: Introduction to Side-Channel Attacks; Paul Kocher, Joshua Jaffe, Benjamin Jun. ---- 
 \subsection{Spectre}
-Spectre induce a una victima a realizar especulativamente operaciones que no ocurririan durante el procesamiento en orden estrictamente serializado de las instrucciones del programa, y que filtran informacion confidencial de la victima a traves de un canal encubierto al adversario.
-Los ataques  de spectre se llevan a cabo en tres pasos:
-\begin{itemize}
-  \item La fase de configuracion, en la que el procesador esta mal entrenado para hacer una prediccion especulativa erronea explotable.
-  \item El procesador ejecuta especulativamente instrucciones desde el contexto de destino en un canal encubierto de microarquitectura.
-  \item Los datos confidenciales se recuperan. Esto se puede hacer cronometrando el acceso a direcciones de memoria en la memoria cache de la CPU.
-\end{itemize}
-\noindent 
-\subsubsection{\textbf{Spectre-PHT(Omision de verificacion de limites)}}
-\noindent Explota la ejecución especulativa tras una comprobación de límites en una rama condicional. Aunque el procesador descarta las instrucciones especulativas si la rama fue mal predicha, los cambios en la caché permanecen.
-\noindent Un atacante puede aprovechar esto cargando datos en la caché durante la ejecución especulativa y luego usar un canal lateral de caché para filtrar información sensible, incluso si el código parece estar correctamente escrito y no permite accesos fuera de los límites en condiciones normales.
-\subsubsection{\textbf{Spectre-BTB(Inyeccion de destino de rama)}}
-\noindent Aprovecha la ejecución especulativa de instrucciones tras una rama indirecta. Al influir en el destino de esa rama indirecta, un atacante puede forzar que se ejecute código malicioso de manera especulativa. Luego, el atacante utiliza un canal lateral basado en la caché para recuperar datos sensibles.
-\noindent Para garantizar un rendimiento elevado, los predictores de ramas utilizan el historial de ramas previas para predecir el destino de la rama. Sin embargo, este historial no está filtrado por el nivel de privilegio ni por el ID del proceso, lo que permite a un atacante desde un nivel de privilegio o proceso diferente entrenar incorrectamente el predictor de ramas y forzar la ejecución especulativa de un gadget.
+Spectre es una vulnerabilidad que explota la ejecución especulativa para engañar al procesador y hacer que acceda a datos sensibles en la memoria, rompiendo el aislamiento entre procesos.
+\newline Afecta casi todos los procesadores modernos (Intel, AMD, ARM).
+\newline Fue descubierto por dos equipos de investigadores: Jann Horn (Google Project Zero) y Paul Kocher, en colaboración con Daniel Genkin (University of Pennsylvania, University of Maryland), Mike Hamburg (Rambus), Moritz Lipp (Graz University of Technology) y Yuval Yarom (University of Adelaide, Data61).
+\newline Funciona de la siguiente manera:
+Primero, el atacante manipula la unidad de predicción de ramas del procesador para inducir una predicción incorrecta sobre las instrucciones que se ejecutarán. De esta manera, el procesador se prepara para ejecutar instrucciones especulativamente basadas en esa suposición errónea.
+A continuación, el procesador, confiando en su predicción equivocada, ejecuta especulativamente instrucciones que no debería ejecutar. Estas instrucciones pueden incluir accesos a áreas de memoria privadas, como datos de otros procesos o del sistema operativo. Aunque el procesador eventualmente detecta el error y descarta estas instrucciones, los efectos de esos accesos permanecen en la memoria caché.
+Por último, el atacante explota estos efectos secundarios midiendo los tiempos de acceso a la caché con técnicas como Flush+Reload. Si el acceso a una dirección de memoria es más rápido, significa que los datos fueron cargados especulativamente y están en la caché. Si el acceso es más lento, significa que los datos no estaban en caché. A través de estos tiempos de acceso, el atacante puede reconstruir información sensible sin necesidad de acceder directamente a la memoria protegida.
+\newline A continuacion, presentaremos 2 variantes de Spectre:
+\subsubsection{\textbf{Spectre-PHT}}
+En este tipo de ataque, el atacante manipula el predictor de saltos para que el procesador especule incorrectamente sobre una comparación en un programa.
+En el siguiente codigo de C:
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\linewidth]{codigo_c.png}
+  \caption{\small Fragmento de cdigo en C ilustrando el concepto de manipulacion de prediccion de saltos.}
+  \label{fig:etiqueta}
+\end{figure}
+\newline x es un valor controlado por el atacante. Normalmente, el procesador verifica que x este dentro de los limites de array1, pero si el predictor de saltos ha sido entrenado para asumir que x es siempre valido, el procesador accedera a array1[x] sin verificar los limites.
+Si x es un valor malicioso, puede hacer que array1[x] apunte a una direccion confidencial. Luego array2[array1[x] * 4096] almacenara esa informacion confidencial en la cache, permitiendo que el atacante lo extraiga mediante mediciones de tiempo de acceso.
+\subsubsection{\textbf{Spectre-BTB}}
+En esta variante, el atacante manipula la Branch Target Buffer (BTB), que es la estructura del procesador encargada de predecir el destino de saltos indirectos.
+El atacante entrena el BTB para que un salto indirecto en el código del programa víctima se redirija erróneamente a una ubicación de código que el atacante elige. Esta ubicación puede contener una secuencia de instrucciones (un "gadget") que filtra información confidencial a través de la caché.
+\subsection{Meltdown}
+Meltdown es una vulnerabilidad que permite a un atacante acceder a la memoria protegida del sistema, incluyendo la memoria del kernel, rompiendo los mecanismos de aislamiento entre aplicaciones y el sistema operativo.
+\newline Fue descubierto por tres equipos diferentes: Jann Horn (Google Project Zero), Werner Haas y Thomas Prescher (Cyberus Technology) y Daniel Gruss, Moritz Lipp, Stefan Mangard y Michael Schwarz (Graz University of Technology).
+\newline Esta vulnerabilidad afecta principalmente a los procesadores Intel fabricados desde 1995, aunque ciertas variantes también pueden impactar a algunos modelos de ARM y AMD.
+\newline Funciona de la siguiente manera:
+\newline Primero, el atacante manipula el programa para que el procesador cargue en un registro el contenido de una dirección de memoria secreta, a la que normalmente no tendría acceso directo.
+Luego, debido a la ejecución especulativa, el procesador accede anticipadamente a la memoria caché basándose en ese contenido secreto, dejando un rastro en la caché.
+Finalmente, el atacante explota este rastro utilizando la técnica Flush+Reload, que le permite monitorear la caché y detectar qué datos han sido accedidos recientemente, revelando así información confidencial.
+\newline A continuacion, presentaremos 3 variantes de Meltdown:
+\subsubsection{\textbf{Meltdown-P}}
+Este ataque afecta a los procesadores Intel y explota una vulnerabilidad en el sistema SGX, que es una tecnologia que crea espacios seguros en la memoria donde se pueden almacenar datos confidenciales..
+\newline El ataque se basa en manipular la tabla de paginas, que es un mapa que le indica al procesador que direccion tiene cada pieza de informacion. Cuando un atacante cambia alguna de estas direcciones en la tabla, se provoca un fallo de protección. Este fallo debería impedir el acceso a los datos y bloquear el sistema, pero debido a la ejecución especulativa, el procesador sigue trabajando aunque haya ocurrido un error. A pesar de detectar el fallo, el procesador continúa ejecutando instrucciones usando direcciones de memoria incorrectas, lo que hace que los datos se carguen temporalmente en la caché L1. Luego el atacante puede usar la tecnica flush+reload para extraer esta informacion.
+\subsubsection{\textbf{Meltdown-NM}}
+Este ataque aprovecha cómo la CPU maneja de manera ineficiente los registros de la unidad de punto flotante (FPU) al cambiar de un proceso a otro. En lugar de guardar los registros de inmediato cuando se cambia de proceso, la CPU los marca como "no disponibles" y los guarda solo cuando se vuelven a utilizar.
+\newline
+El ataque se desarrolla en tres pasos:
+\newline 1- La víctima carga datos en la FPU.
+\newline 2- La CPU cambia al atacante y marca la FPU como "no disponible".
+\newline 3- El atacante ejecuta una instrucción que usa la FPU, lo que genera una excepción. Sin embargo, antes de que la CPU detenga la ejecución, ya ha procesado temporalmente instrucciones usando datos de la víctima.
+\newline De esta manera, el atacante puede aprovechar los datos no guardados y extraer información sensible que se encontraba en los registros de la FPU, sin tener acceso directo a ella.
+\subsubsection{\textbf{Meltdown-PK}}
+Los procesadores Intel Skylake-SP para servidores incluyen una función de protección de claves de memoria (PKU), que permite modificar los permisos de acceso a páginas de memoria dentro de un proceso sin necesidad de realizar una llamada al sistema o al hipervisor. Esto facilita un aislamiento eficiente de datos sensibles.
+\newline Meltdown-PK es un ataque que evade las restricciones de lectura y escritura impuestas por PKU. Aunque un atacante no tenga permisos para modificar los permisos de acceso con la instrucción wrpkru, puede explotar la ejecución especulativa del procesador para acceder temporalmente a datos protegidos y filtrarlos a través de un canal encubierto.
 
 \section{\LaTeX \ Distributions: Where to Get Them}
 \noindent IEEE recommends using the distribution from the \TeX User Group at \url{http://www.tug.org}. You can join TUG and obtain a DVD distribution or download for free  from the links provided on their website: \url{http://www.tug.org/texlive/}. The DVD includes distributions for Windows, Mac OS X and Linux operating systems.
@@ -911,5 +942,4 @@ In this paragraph you can place your educational, professional background and re
 
 
 \end{document}
-
 
