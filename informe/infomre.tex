@@ -129,6 +129,13 @@ El ataque se desarrolla en tres pasos:
 Los procesadores Intel Skylake-SP para servidores incluyen una función de protección de claves de memoria (PKU), que permite modificar los permisos de acceso a páginas de memoria dentro de un proceso sin necesidad de realizar una llamada al sistema o al hipervisor. Esto facilita un aislamiento eficiente de datos sensibles.
 \newline Meltdown-PK es un ataque que evade las restricciones de lectura y escritura impuestas por PKU. Aunque un atacante no tenga permisos para modificar los permisos de acceso con la instrucción wrpkru, puede explotar la ejecución especulativa del procesador para acceder temporalmente a datos protegidos y filtrarlos a través de un canal encubierto.
 
+\section{Mitigaciones}
+Las vulnerabilidades de Spectre y Meltdown surgen como consecuencia directa de optimizaciones en los procesadores modernos. Aunque estas tecnicas se enfocan en mejorar el rendimiento, tambien han introducido riesgos de seguridad que han permitido el desarrollo de ataques capaces de comprometer la seguridad de los sistemas.
+
+Dado que el problema esta relacionado con el diseño de la arquitectura de los procesadores, no tendremos una solucion definitiva hasta que el hardware sea modificado. Sin embargo, debido al tiempo que toma el desarrollo y fabricacion de nuevos chips, podrian pasar varios años antes de que las futuras generaciones de CPUs solucionen completamente el problema.
+
+Mientras tanto, se han desarrollado diversas mitigaciones a nivel de software y hardware que pueden controlar algunas variantes de estas vulnerabilidades y minimizar el riesgo de ataques en sistemas actuales, en este informe vamos a listar algunas de las mas relevantes.
+
 \section{\LaTeX \ Distributions: Where to Get Them}
 \noindent IEEE recommends using the distribution from the \TeX User Group at \url{http://www.tug.org}. You can join TUG and obtain a DVD distribution or download for free  from the links provided on their website: \url{http://www.tug.org/texlive/}. The DVD includes distributions for Windows, Mac OS X and Linux operating systems.
  

@@ -1,7 +1,7 @@
 # Fdb version 4
-["pdflatex"] 1738433906.12574 "/home/santiagobarrionuevo/informe_final/informe/infomre.tex" "infomre.pdf" "infomre" 1738433907.04143 0
-  "/etc/texmf/web2c/texmf.cnf" 1737611766.16397 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/santiagobarrionuevo/informe_final/informe/infomre.tex" 1738433905.85735 46242 807b07091c06b728092bb0a775fa912f ""
+["pdflatex"] 1738546989.40491 "/home/vaky/Documentos/FIUBA/materias°1/Orga/tp-final/informe_final/informe/infomre.tex" "infomre.pdf" "infomre" 1738546990.75919 0
+  "/etc/texmf/web2c/texmf.cnf" 1737577489.00776 475 c0e671620eb5563b2130f56340a5fde8 ""
+  "/home/vaky/Documentos/FIUBA/materias°1/Orga/tp-final/informe_final/informe/infomre.tex" 1738546987.79802 47227 a75a9350276cb180af732a6c5b483166 ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/adobe/courier/pcrr7t.tfm" 1136768653 960 379cc0019370a9e0208a0a3f949f847a ""
@@ -113,14 +113,14 @@
   "/usr/share/texlive/texmf-dist/tex/latex/url/url.sty" 1388531844 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "/usr/share/texlive/texmf-dist/web2c/texmf.cnf" 1707919699 40399 f2c302f7d2af602abb742093540a5834 ""
   "/usr/share/texmf/web2c/texmf.cnf" 1707919699 40399 f2c302f7d2af602abb742093540a5834 ""
-  "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1737611781.03665 5472669 54eaf61a88b6b7896ebd0dac973cb29c ""
-  "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1737611830 8213046 f62f4da660a435d481d890a5f54d7cb5 ""
-  "IEEEtran.cls" 1737832633.20365 281957 5b2e4fa15b0f7eabb840ebf67df4c0f7 ""
-  "codigo_c.png" 1738364706.30026 4541 264ef9c3800b2899846809e9239d32a6 ""
-  "fig1.png" 1737832633.20465 37986 d648cf25b5ad3b3d5099b08ddbf9e2dd ""
-  "infomre.aux" 1738433906.95338 7441 0e4084d4d518b835c1b88600343c0666 "pdflatex"
-  "infomre.tex" 1738433905.85735 46242 807b07091c06b728092bb0a775fa912f ""
-  "rings.jpg" 1738337805.12087 151051 91bcb225a36bf60773b5b082838b9e85 ""
+  "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1737577530.81474 5472669 54eaf61a88b6b7896ebd0dac973cb29c ""
+  "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1737577591 8213495 4274b72555071de25e3b65955fc43f9f ""
+  "IEEEtran.cls" 1737898261.86088 281957 5b2e4fa15b0f7eabb840ebf67df4c0f7 ""
+  "codigo_c.png" 1738512298.99681 4541 264ef9c3800b2899846809e9239d32a6 ""
+  "fig1.png" 1737898261.86188 37986 d648cf25b5ad3b3d5099b08ddbf9e2dd ""
+  "infomre.aux" 1738546990.58422 7550 e42438c31392ca7fff2aa9d6718b21f1 "pdflatex"
+  "infomre.tex" 1738546987.79802 47227 a75a9350276cb180af732a6c5b483166 ""
+  "rings.jpg" 1738280857.43077 151051 91bcb225a36bf60773b5b082838b9e85 ""
   (generated)
   "infomre.aux"
   "infomre.log"
