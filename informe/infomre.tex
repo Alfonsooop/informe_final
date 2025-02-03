@@ -151,6 +151,19 @@ Traducir estos mapas puede ser costoso, por lo que el hardware tiene un búfer d
 
 %Falta que explique KPTI, KALSRS y relacionados. (KAISER parches)
 
+\subsection{Retpoline}
+El nombre Retpoline es un acrónimo de “return” (retorno) y “trampoline” (trampolín). En este contexto, un trampolin es un pequeño fragmento de codigo invocado como funcion, que realiza una tarea breve y, a diferencia de una llamada a funcion comun, no regresa a su llamador despues de la ejecución, sino que salta a otra ubicacion, como se muestra en la Figura 3. Si el destino del salto del trampolin es una funcion, al retornar, dicha funcion regresara al llamador original del trampolin.
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\linewidth]{retpoline.jpg}
+  \caption{\small Trampoline se refiere a un fragmento de código que saltaría a otra ubicación después de terminar la ejecución en lugar de regresar al llamador original.}
+\end{figure}
+
+Retpoline fue desarrollado por Google para mitigar los ataques Spectre-BTB. Su objetivo es evitar que este tipo de ataques manipulen el Branch Target Buffer (BTB) y desvien la ejecucion especulativa hacia una direccion arbitraria. Para ello, Retpoline reemplaza las bifurcaciones indirectas con una secuencia especial de instrucciones basada en llamadas y retornos, asegurando que la ejecucion especulativa permanezca en un bucle inofensivo dentro del Return Stack Buffer (RSB). Esto impide que un atacante manipule las predicciones de bifurcaciones para ejecutar codigo malicioso.
+
+Para lograr esto, Retpoline aprovecha la forma en que los procesadores gestionan las llamadas y retornos de funciones. Al utilizar una instruccion call hacia un trampolin, se llena el RSB con una direccion de retorno controlada. Cuando el procesador especula sobre el retorno, en lugar de seguir una prediccion potencialmente manipulada desde el BTB, sigue la direccion almacenada en el RSB y ejecuta un bucle de instrucciones seguras.
+%https://www.tandfonline.com/doi/epdf/10.1080/02564602.2018.1531072?needAccess=true
+
 \section{Where to get the IEEEtran Templates}
 \noindent The {\bf{IEEE Template Selector}} will always have the most up-to-date versions of the \LaTeX\ and MSWord templates. Please see: \url{https://template-selector.ieee.org/} and follow the steps to find the correct template for your intended publication. Many publications use the IEEETran LaTeX templates, however, some publications have their own special templates. Many of these are  based on IEEEtran, but may have special instructions that vary slightly from those in this document.
 
