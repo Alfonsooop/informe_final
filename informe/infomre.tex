@@ -136,9 +136,20 @@ Dado que el problema esta relacionado con el diseño de la arquitectura de los p
 
 Mientras tanto, se han desarrollado diversas mitigaciones a nivel de software y hardware que pueden controlar algunas variantes de estas vulnerabilidades y minimizar el riesgo de ataques en sistemas actuales, en este informe vamos a listar algunas de las mas relevantes.
 
-\section{\LaTeX \ Distributions: Where to Get Them}
-\noindent IEEE recommends using the distribution from the \TeX User Group at \url{http://www.tug.org}. You can join TUG and obtain a DVD distribution or download for free  from the links provided on their website: \url{http://www.tug.org/texlive/}. The DVD includes distributions for Windows, Mac OS X and Linux operating systems.
- 
+\subsection{Aislamiento de Tablas de Paginas y Aleatoridad}
+El kernel se encarga de establecer tablas de páginas para controlar la asignación entre una dirección virtual y una dirección física. El acceso entre el núcleo y el espacio de usuario también se controla mediante las tablas de páginas. Una página que está mapeada para el kernel no es accesible desde el espacio de usuario, aunque el núcleo normalmente puede acceder al espacio de usuario.
+
+Traducir estos mapas puede ser costoso, por lo que el hardware tiene un búfer de traducción de direcciones (TLB) para almacenar asignaciones. A veces es necesario eliminar las asignaciones antiguas (invalidar el TLB), pero hacerlo es costoso, por lo que el código se escribe para minimizar tales llamadas. Un truco aquí es mantener siempre las tablas de páginas del núcleo mapeadas cuando los procesos de usuario se están ejecutando. Los permisos de la tabla de páginas impiden que el espacio de usuario acceda a las asignaciones del kernel, pero el núcleo puede acceder a ellas inmediatamente cuando se realiza una llamada al sistema.
+
+\noindent Exploits como Meltdown demostraron que este método de mantener las tablas de páginas del kernel disponibles en el espacio de usuario, si bien no permite directamente la filtración de información del núcleo, puede ser explotado por atacantes. Estos generan intentos de lectura sobre dichas páginas; al no contar con los permisos necesarios, la CPU bloquea el programa por seguridad (ya que se está ejecutando en modo usuario). Sin embargo, la CPU prebusca los datos de todas formas. Este comportamiento es aprovechado por los atacantes para medir el tiempo de acceso a los datos prebuscados y, de esta manera, llevar a cabo un ataque de canal lateral basado en caché.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\linewidth]{isolation-page.png}
+  \caption{\small Imagen representativa de como se modifican las tablas del modo usuario y kernel, luego de aplicarle el aislamiento.}
+\end{figure}
+
+%Falta que explique KPTI, KALSRS y relacionados. (KAISER parches)
 
 \section{Where to get the IEEEtran Templates}
 \noindent The {\bf{IEEE Template Selector}} will always have the most up-to-date versions of the \LaTeX\ and MSWord templates. Please see: \url{https://template-selector.ieee.org/} and follow the steps to find the correct template for your intended publication. Many publications use the IEEETran LaTeX templates, however, some publications have their own special templates. Many of these are  based on IEEEtran, but may have special instructions that vary slightly from those in this document.
