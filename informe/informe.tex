@@ -19,9 +19,9 @@
 
 \author{
 \textit{Alfonso Pili, Iñaki Vydra, Santiago Barrionuevo}
-\thanks{Alfonso Pili -  - FIUBA - (mail: .uba.ar)}
+\thanks{Alfonso Pili - Ingenieria Informatica - FIUBA - (mail: apili.uba.ar)}
 \thanks{Iñaki Vydra - Ingenieria Informatica - FIUBA - (mail: ivydra@fi.uba.ar)}
-\thanks{Santiago Barrionuevo - - FIUBA - (mail: .uba.ar)}
+\thanks{Santiago Barrionuevo - Ingenieria Informatica - FIUBA - (mail: sanbarrionuevo.uba.ar)}
 }
 
 \markboth{ORGANIZACIÓN DEL COMPUTADOR - FIUBA 2024}{La inseguridad del hardware actual}
@@ -173,6 +173,10 @@ Sin embargo, aunque estas técnicas reducen significativamente la efectividad de
 Retpoline fue desarrollado por Google para mitigar los ataques Spectre-BTB. Su objetivo es evitar que este tipo de ataques manipulen el Branch Target Buffer (BTB) y desvíen la ejecución especulativa hacia una dirección arbitraria. Para ello, Retpoline reemplaza las bifurcaciones indirectas con una secuencia especial de instrucciones basada en llamadas y retornos, asegurando que la ejecución especulativa permanezca en un bucle inofensivo dentro del Return Stack Buffer (RSB). Esto impide que un atacante manipule las predicciones de bifurcaciones para ejecutar código malicioso.
 
 Para lograr esto, Retpoline aprovecha la forma en que los procesadores gestionan las llamadas y retornos de funciones. Al utilizar una instrucción call hacia un trampolín, se llena el RSB con una dirección de retorno controlada. Cuando el procesador especula sobre el retorno, en lugar de seguir una predicción potencialmente manipulada desde el BTB, sigue la dirección almacenada en el RSB y ejecuta un bucle de instrucciones seguras.\cite{retpoline1}\cite{retpoline2}
+
+\section{Conclusion}
+El informe destaca cómo las optimizaciones en los procesadores modernos, como la ejecución especulativa, la predicción de bifurcaciones o la ejecución fuera de orden, han mejorado el rendimiento de nuestros sistemas, pero también han abierto la puerta a diferentes vulnerabilidades. Spectre y Meltdown son ejemplos de cómo estas técnicas pueden ser explotadas para acceder a información confidencial, poniendo en riesgo la integridad y la privacidad de los datos. Aunque se han implementado diferentes mitigaciones, muchas de estas afectan significativamente el rendimiento. Por lo tanto, es esencial lograr un equilibrio entre la eficiencia de los procesadores y la protección de los sistemas frente a nuevos riesgos, asegurando la seguridad de los datos mientras la tecnología continúa avanzando. Es muy importante que los fabricantes y desarrolladores trabajen en soluciones innovadoras y colaboren para enfrentar estas amenazas, garantizando así que la evolución tecnológica sea tanto segura como eficiente.
+
 
 \begin{thebibliography}{2}
 

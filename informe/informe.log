@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.1.22)  5 FEB 2025 16:47
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.1.22)  5 FEB 2025 20:28
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -464,22 +464,24 @@ Package pdftex.def Info: retpoline.jpg  used on input line 171.
 (pdftex.def)             Requested size: 252.94499pt x 266.30579pt.
 
 ! Misplaced alignment tab character &.
-l.179 \bibitem{ref} Hennessy, J. L., &
+l.183 \bibitem{ref} Hennessy, J. L., &
                                        Patterson, D. A. (2006). Computer Arc...
 
 ? 
-LaTeX Font Info:    Calculating math sizes for size <8.03> on input line 181.
+LaTeX Font Info:    Calculating math sizes for size <8.03> on input line 185.
 LaTeX Font Info:    Trying to load font information for TS1+ppl on input line 1
-85.
+89.
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ppl.fd
 File: ts1ppl.fd 2001/06/04 font definitions for TS1/ppl.
 )
 ! Misplaced alignment tab character &.
-l.197 ...1} Chen, B., Wu, Q., Tan, Y., Yang, L., &
+l.201 ...1} Chen, B., Wu, Q., Tan, Y., Yang, L., &
                                                    Zou, P. (2018). Explorati...
 
 ? 
-[5 <./retpoline.jpg>] (./informe.aux
+[5 <./retpoline.jpg>] [6
+
+] (./informe.aux
 LaTeX Info: Redefining \. on input line 11.
 LaTeX Info: Redefining \% on input line 11.
 )
@@ -507,10 +509,10 @@ nts/type1/urw/helvetic/uhvro8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/palatino/uplb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/
 uplr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
 </usr/share/texlive/texmf-dist/fonts/type1/urw/zapfding/uzdr.pfb>
-Output written on informe.pdf (5 pages, 375317 bytes).
+Output written on informe.pdf (6 pages, 377021 bytes).
 PDF statistics:
- 71 PDF objects out of 1000 (max. 8388607)
- 38 compressed objects within 1 object stream
+ 74 PDF objects out of 1000 (max. 8388607)
+ 40 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  26 words of extra memory for PDF output out of 10000 (max. 10000000)
 
