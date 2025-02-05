@@ -83,13 +83,13 @@ Existen muchismos casos de canales laterales que se pueden explotar\cite{Side Ch
                                                                   %ref[casos de canales laterales]
 %ref: Introduction to Side-Channel Attacks; Paul Kocher, Joshua Jaffe, Benjamin Jun. ---- 
 \subsection{Spectre}
-Spectre es una vulnerabilidad que explota la ejecución especulativa para engañar al procesador y hacer que acceda a datos sensibles en la memoria, rompiendo el aislamiento entre procesos.
+Spectre es una vulnerabilidad que explota la ejecución especulativa para engañar al procesador y hacer que acceda a datos sensibles en la memoria, rompiendo el aislamiento entre procesos. \cite{Spectre}
 \newline Afecta casi todos los procesadores modernos (Intel, AMD, ARM).
 \newline Fue descubierto por dos equipos de investigadores: Jann Horn (Google Project Zero) y Paul Kocher, en colaboración con Daniel Genkin (University of Pennsylvania, University of Maryland), Mike Hamburg (Rambus), Moritz Lipp (Graz University of Technology) y Yuval Yarom (University of Adelaide, Data61).
 \newline Funciona de la siguiente manera:
 Primero, el atacante manipula la unidad de predicción de ramas del procesador para inducir una predicción incorrecta sobre las instrucciones que se ejecutarán. De esta manera, el procesador se prepara para ejecutar instrucciones especulativamente basadas en esa suposición errónea.
 A continuación, el procesador, confiando en su predicción equivocada, ejecuta especulativamente instrucciones que no debería ejecutar. Estas instrucciones pueden incluir accesos a áreas de memoria privadas, como datos de otros procesos o del sistema operativo. Aunque el procesador eventualmente detecta el error y descarta estas instrucciones, los efectos de esos accesos permanecen en la memoria caché.
-Por último, el atacante explota estos efectos secundarios midiendo los tiempos de acceso a la caché con técnicas como Flush+Reload. Si el acceso a una dirección de memoria es más rápido, significa que los datos fueron cargados especulativamente y están en la caché. Si el acceso es más lento, significa que los datos no estaban en caché. A través de estos tiempos de acceso, el atacante puede reconstruir información sensible sin necesidad de acceder directamente a la memoria protegida.
+Por último, el atacante explota estos efectos secundarios midiendo los tiempos de acceso a la caché con técnicas como Flush+Reload. Si el acceso a una dirección de memoria es más rápido, significa que los datos fueron cargados especulativamente y están en la caché. Si el acceso es más lento, significa que los datos no estaban en caché. A través de estos tiempos de acceso, el atacante puede reconstruir información sensible sin necesidad de acceder directamente a la memoria protegida. \cite{Spectre}
 \newline A continuacion, presentaremos 2 variantes de Spectre:
 \subsubsection{\textbf{Spectre-PHT}}
 En este tipo de ataque, el atacante manipula el predictor de saltos para que el procesador especule incorrectamente sobre una comparación en un programa.
@@ -101,22 +101,22 @@ En el siguiente codigo de C:
   \label{fig:etiqueta}
 \end{figure}
 \newline x es un valor controlado por el atacante. Normalmente, el procesador verifica que x este dentro de los limites de array1, pero si el predictor de saltos ha sido entrenado para asumir que x es siempre valido, el procesador accedera a array1[x] sin verificar los limites.
-Si x es un valor malicioso, puede hacer que array1[x] apunte a una direccion confidencial. Luego array2[array1[x] * 4096] almacenara esa informacion confidencial en la cache, permitiendo que el atacante lo extraiga mediante mediciones de tiempo de acceso.
+Si x es un valor malicioso, puede hacer que array1[x] apunte a una direccion confidencial. Luego array2[array1[x] * 4096] almacenara esa informacion confidencial en la cache, permitiendo que el atacante lo extraiga mediante mediciones de tiempo de acceso. \cite{Spectre}
 \subsubsection{\textbf{Spectre-BTB}}
 En esta variante, el atacante manipula la Branch Target Buffer (BTB), que es la estructura del procesador encargada de predecir el destino de saltos indirectos.
-El atacante entrena el BTB para que un salto indirecto en el código del programa víctima se redirija erróneamente a una ubicación de código que el atacante elige. Esta ubicación puede contener una secuencia de instrucciones (un "gadget") que filtra información confidencial a través de la caché.
+El atacante entrena el BTB para que un salto indirecto en el código del programa víctima se redirija erróneamente a una ubicación de código que el atacante elige. Esta ubicación puede contener una secuencia de instrucciones (un "gadget") que filtra información confidencial a través de la caché. \cite{Spectre}
 \subsection{Meltdown}
-Meltdown es una vulnerabilidad que permite a un atacante acceder a la memoria protegida del sistema, incluyendo la memoria del kernel, rompiendo los mecanismos de aislamiento entre aplicaciones y el sistema operativo.
+Meltdown es una vulnerabilidad que permite a un atacante acceder a la memoria protegida del sistema, incluyendo la memoria del kernel, rompiendo los mecanismos de aislamiento entre aplicaciones y el sistema operativo. \cite{meltdown}
 \newline Fue descubierto por tres equipos diferentes: Jann Horn (Google Project Zero), Werner Haas y Thomas Prescher (Cyberus Technology) y Daniel Gruss, Moritz Lipp, Stefan Mangard y Michael Schwarz (Graz University of Technology).
 \newline Esta vulnerabilidad afecta principalmente a los procesadores Intel fabricados desde 1995, aunque ciertas variantes también pueden impactar a algunos modelos de ARM y AMD.
 \newline Funciona de la siguiente manera:
 \newline Primero, el atacante manipula el programa para que el procesador cargue en un registro el contenido de una dirección de memoria secreta, a la que normalmente no tendría acceso directo.
 Luego, debido a la ejecución especulativa, el procesador accede anticipadamente a la memoria caché basándose en ese contenido secreto, dejando un rastro en la caché.
-Finalmente, el atacante explota este rastro utilizando la técnica Flush+Reload, que le permite monitorear la caché y detectar qué datos han sido accedidos recientemente, revelando así información confidencial.
+Finalmente, el atacante explota este rastro utilizando la técnica Flush+Reload, que le permite monitorear la caché y detectar qué datos han sido accedidos recientemente, revelando así información confidencial. \cite{meltdown}
 \newline A continuacion, presentaremos 3 variantes de Meltdown:
 \subsubsection{\textbf{Meltdown-P}}
 Este ataque afecta a los procesadores Intel y explota una vulnerabilidad en el sistema SGX, que es una tecnologia que crea espacios seguros en la memoria donde se pueden almacenar datos confidenciales..
-\newline El ataque se basa en manipular la tabla de paginas, que es un mapa que le indica al procesador que direccion tiene cada pieza de informacion. Cuando un atacante cambia alguna de estas direcciones en la tabla, se provoca un fallo de protección. Este fallo debería impedir el acceso a los datos y bloquear el sistema, pero debido a la ejecución especulativa, el procesador sigue trabajando aunque haya ocurrido un error. A pesar de detectar el fallo, el procesador continúa ejecutando instrucciones usando direcciones de memoria incorrectas, lo que hace que los datos se carguen temporalmente en la caché L1. Luego el atacante puede usar la tecnica flush+reload para extraer esta informacion.
+\newline El ataque se basa en manipular la tabla de paginas, que es un mapa que le indica al procesador que direccion tiene cada pieza de informacion. Cuando un atacante cambia alguna de estas direcciones en la tabla, se provoca un fallo de protección. Este fallo debería impedir el acceso a los datos y bloquear el sistema, pero debido a la ejecución especulativa, el procesador sigue trabajando aunque haya ocurrido un error. A pesar de detectar el fallo, el procesador continúa ejecutando instrucciones usando direcciones de memoria incorrectas, lo que hace que los datos se carguen temporalmente en la caché L1. Luego el atacante puede usar la tecnica flush+reload para extraer esta informacion. \cite{Meltdown variantes}
 \subsubsection{\textbf{Meltdown-NM}}
 Este ataque aprovecha cómo la CPU maneja de manera ineficiente los registros de la unidad de punto flotante (FPU) al cambiar de un proceso a otro. En lugar de guardar los registros de inmediato cuando se cambia de proceso, la CPU los marca como "no disponibles" y los guarda solo cuando se vuelven a utilizar.
 \newline
@@ -124,10 +124,10 @@ El ataque se desarrolla en tres pasos:
 \newline 1- La víctima carga datos en la FPU.
 \newline 2- La CPU cambia al atacante y marca la FPU como "no disponible".
 \newline 3- El atacante ejecuta una instrucción que usa la FPU, lo que genera una excepción. Sin embargo, antes de que la CPU detenga la ejecución, ya ha procesado temporalmente instrucciones usando datos de la víctima.
-\newline De esta manera, el atacante puede aprovechar los datos no guardados y extraer información sensible que se encontraba en los registros de la FPU, sin tener acceso directo a ella.
+\newline De esta manera, el atacante puede aprovechar los datos no guardados y extraer información sensible que se encontraba en los registros de la FPU, sin tener acceso directo a ella. \cite{Meltdown variantes}
 \subsubsection{\textbf{Meltdown-PK}}
 Los procesadores Intel Skylake-SP para servidores incluyen una función de protección de claves de memoria (PKU), que permite modificar los permisos de acceso a páginas de memoria dentro de un proceso sin necesidad de realizar una llamada al sistema o al hipervisor. Esto facilita un aislamiento eficiente de datos sensibles.
-\newline Meltdown-PK es un ataque que evade las restricciones de lectura y escritura impuestas por PKU. Aunque un atacante no tenga permisos para modificar los permisos de acceso con la instrucción wrpkru, puede explotar la ejecución especulativa del procesador para acceder temporalmente a datos protegidos y filtrarlos a través de un canal encubierto.
+\newline Meltdown-PK es un ataque que evade las restricciones de lectura y escritura impuestas por PKU. Aunque un atacante no tenga permisos para modificar los permisos de acceso con la instrucción wrpkru, puede explotar la ejecución especulativa del procesador para acceder temporalmente a datos protegidos y filtrarlos a través de un canal encubierto. \cite{Meltdown variantes}
 
 \section{Mitigaciones}
 Las vulnerabilidades de Spectre y Meltdown surgen como consecuencia directa de optimizaciones en los procesadores modernos. Aunque estas tecnicas se enfocan en mejorar el rendimiento, tambien han introducido riesgos de seguridad que han permitido el desarrollo de ataques capaces de comprometer la seguridad de los sistemas.
@@ -190,7 +190,6 @@ Para lograr esto, Retpoline aprovecha la forma en que los procesadores gestionan
 
 
 \bibitem{paralelismo} Paralelismo en las instrucciones, [Disponible]: \url{https://orgacomp.github.io/9557/teoria/procesador/paralelismo/}
-
 \bibitem{Virtualizacion} Cap 9, Computer Systems: A Programmer’s Perspective (3.ª ed.) 2015 , Pearson.
 \bibitem{syscall}  Linux system calls,” 2019. [Disponible]: \url{http://man7.org/linux/man-pages/man2/syscalls.2.html} 
 \bibitem{Aleatorización} Aleatorización del diseño del espacio de direcciones del núcleo, [Disponible]: \url{https://bit.ly/aleatorizacion-kaslr}
@@ -201,10 +200,10 @@ Para lograr esto, Retpoline aprovecha la forma en que los procesadores gestionan
 \bibitem{KASLR} KASLR in the age of MicroVMs, 2022, [Disponible]: \url{https://www.cc0x1f.net/publications/kaslr.pdf}
 \bibitem{PCID} Process Context IDentifiers, [Disponible]: \url{https://www.kernel.org/doc/Documentation/x86/pti.txt}, \url{https://bit.ly/pciddoc}
 \bibitem{meltdown} Lipp, M., Schwarz, M., Gruss, D., Prescher, T., Haas, W., Fogh, A., Horn, J., Mangard, S., Kocher, P., Genkin, D., Yarom, Y. y Hamburg, M. (2018). Meltdown: Reading Kernel Memory from User Space. In *27th USENIX Security Symposium (USENIX Security 18)*.
-
+\bibitem{Meltdown variantes} Claudio Canella , Jo Van Bulck, Michael Schwarz, Moritz Lipp, Benjamin von Berg, Philipp Ortner, Frank Piessens, Dmitry Evtyushkin y Daniel Gruss. \textit{A Systematic Evaluation of Transient Execution Attacks and Defenses}. 2019. [Disponible]: \url{https://www.usenix.org/conference/usenixsecurity19/presentation/canella}
+\bibitem{Spectre} Paul Kocher, Daniel Genkin, Daniel Gruss, Werner Haas, Mike Hamburg, Moritz Lipp, Stefan Mangard, Thomas Prescher, Michael Schwarz, y Yuval Yarom. \textit{Spectre Attacks: Exploiting Speculative Execution}. 2019. [Disponible]: \url{https://spectreattack.com}
 %\bibitem{Exploits-Parches} Linux kernel exploit development, 2022. [Disponible]: \url{https://breaking-bits.gitbook.io/breaking-bits/exploit-development/linux-kernel-exploit-development}
 %\bibitem{TLB} Memory system, 2016, Sarah L. Harris, David Money Harris, in Digital Design and Computer Architecture, 2016. [Papers]:\url{https://www.sciencedirect.com/topics/computer-science/translation-lookaside-buffer}
-
 
 \end{thebibliography}
 
