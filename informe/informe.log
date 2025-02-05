@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.1.22)  5 FEB 2025 16:34
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.1.22)  5 FEB 2025 16:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**infomre.tex
-(./infomre.tex
+**informe.tex
+(./informe.tex
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
 (./IEEEtran.cls
@@ -334,7 +334,7 @@ File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
 LaTeX Warning: Unused global option(s):
     [lettersize].
 
-(./infomre.aux
+(./informe.aux
 LaTeX Info: Redefining \. on input line 11.
 LaTeX Info: Redefining \% on input line 11.
 
@@ -342,7 +342,7 @@ LaTeX Info: Redefining \% on input line 11.
 LaTeX Warning: Label `fig:etiqueta' multiply defined.
 
 )
-\openout1 = `infomre.aux'.
+\openout1 = `informe.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 17.
 LaTeX Font Info:    ... okay on input line 17.
@@ -479,7 +479,7 @@ l.197 ...1} Chen, B., Wu, Q., Tan, Y., Yang, L., &
                                                    Zou, P. (2018). Explorati...
 
 ? 
-[5 <./retpoline.jpg>] (./infomre.aux
+[5 <./retpoline.jpg>] (./informe.aux
 LaTeX Info: Redefining \. on input line 11.
 LaTeX Info: Redefining \% on input line 11.
 )
@@ -507,7 +507,7 @@ nts/type1/urw/helvetic/uhvro8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/palatino/uplb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/
 uplr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
 </usr/share/texlive/texmf-dist/fonts/type1/urw/zapfding/uzdr.pfb>
-Output written on infomre.pdf (5 pages, 375317 bytes).
+Output written on informe.pdf (5 pages, 375317 bytes).
 PDF statistics:
  71 PDF objects out of 1000 (max. 8388607)
  38 compressed objects within 1 object stream

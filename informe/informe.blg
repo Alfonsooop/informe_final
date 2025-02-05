@@ -1,24 +1,24 @@
 This is BibTeX, Version 0.99d (TeX Live 2023/Debian)
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
-The top-level auxiliary file: infomre.aux
-White space in argument---line 15 of file infomre.aux
+The top-level auxiliary file: informe.aux
+White space in argument---line 15 of file informe.aux
  : \citation{Side
  :                Channel Attack}
 I'm skipping whatever remains of this command
-White space in argument---line 16 of file infomre.aux
+White space in argument---line 16 of file informe.aux
  : \citation{Side
  :                Channel tipos}
 I'm skipping whatever remains of this command
-White space in argument---line 29 of file infomre.aux
+White space in argument---line 29 of file informe.aux
  : \citation{Meltdown
  :                    variantes}
 I'm skipping whatever remains of this command
-White space in argument---line 30 of file infomre.aux
+White space in argument---line 30 of file informe.aux
  : \citation{Meltdown
  :                    variantes}
 I'm skipping whatever remains of this command
-I found no \bibdata command---while reading file infomre.aux
-I found no \bibstyle command---while reading file infomre.aux
+I found no \bibdata command---while reading file informe.aux
+I found no \bibstyle command---while reading file informe.aux
 You've used 11 entries,
             0 wiz_defined-function locations,
             99 strings with 619 characters,
