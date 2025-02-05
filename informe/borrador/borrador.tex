@@ -11,7 +11,7 @@
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08emT\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 
 \begin{document}
-\title{La inseguirdad del hardware actual}  %Pensarlo mejor.
+\title{La Inseguridad del Hardware Actual: Un Análisis de Vulnerabilidades y Mitigaciones }  
 \author{
 \textit{Alfonso Pili, Iñaki Vydra, Santiago Barrionuevo}
 \thanks{Alfonso Pili -  - FIUBA - (mail: .uba.ar)}
@@ -23,12 +23,12 @@
 \markboth{ORGANIZACION DEL COMPUTADOR - FIUBA 2024}{La inseguirdad del hardware actual}
 \maketitle
 
-\begin{abstract} %Algo asi
-Este articulo realizara estudio de la seguridad en la arquitectura del hardware, profundizara en temas como las vulnerabilidades de los actuales procesadores, sus respectivas mitigaciones y por ultimo se detallaran los campos de investigacion en proceso que ayudan a prevenir o preparanos ante estos ataques maliciosos.
+\begin{abstract} 
+  La seguridad del hardware actual se ha convertido en una preocupacion crítica en la era digital. Este informe profundiza en las vulnerabilidades que afectan a los procesadores contemporáneos, incluyendo ataques de canal lateral como Spectre y Meltdown, que explotan las optimizaciones de rendimiento para acceder a informacion sensible. Se analizan las tecnicas de mitigacion implementadas, como el aislamiento de tablas de paginas (KPTI), la aleatorizacion del diseño del espacio de direcciones del kernel (KASLR) y retpoline, que buscan contrarrestar estos ataques.
 \end{abstract}
 
-\begin{IEEEkeywords} %Ubicar bien los temas.
-Predicciones de saltos, ejecucion especulativa, Meltodown, Spectre y sus variantes,Ataques de canales laterales, Mitigaciones y prevenciones.
+\begin{IEEEkeywords} 
+  Seguridad del hardware, Vulnerabilidades del procesador, Ataques de canal lateral, Spectre, Meltdown, Predicción de saltos, Ejecucion especulativa, Mitigaciones de hardware, Mitigaciones de software, Prevención de ataques, KPTI, KASLR, Retpoline.
 \end{IEEEkeywords}
 
 
@@ -45,7 +45,8 @@ Las optimizaciones claves de los procesadores modernos son: la \textbf{ejecució
 \item \textbf{Ejecución Fuera de Orden}: Aprovecha al máximo los recursos del procesador ejecutando instrucciones en paralelo en distintas unidades de ejecución. Mientras una unidad está ocupada, las demás pueden procesar otras instrucciones de forma simultánea, siempre que no rompa las reglas arquitectónicas dadas por el hardware.
 \item \textbf{Predicción de Bifurcaciones}: Es una técnica utilizada para decidir qué rama de un condicional es más probable que se ejecute. Esto optimiza el flujo de instrucciones al anticiparse al resultado de la condición, evitando interrupciones en el pipeline del procesador y mejorando el rendimiento general.
 \end{itemize}
-%Ref : Hennessy, J. L., & Patterson, D. A. "Computer Architecture: A Quantitative Approach", 6th Edition. ---- Branch Prediction | ScienceDirect (web)
+%Ref1 : Hennessy, J. L., & Patterson, D. A. "Computer Architecture: A Quantitative Approach", 6th Edition. ---- Branch Prediction | ScienceDirect (web)
+% ya esta agregado como REF1
 
 Los procesadores modernos implementan estas técnicas de optimización para mejorar el rendimiento. Sin embargo, estas mismas técnicas pueden ser explotadas para crear \textbf{canales laterales} de los cuales hablaremos mas adelante en la seccion de \textbf{Vulnerabilidades}. 
 
@@ -81,7 +82,7 @@ Estas fugas de información indirecta son los llamados \textbf{canales laterales
 %Dos de los casos mas conocidos de estos tipos de \textit{\textbf{exploits}} son \textbf{Meltdown} y \textbf{Spectre} que se detallaran a continuacion:
 Existen muchismos casos de canales laterales que se pueden explotar pero en este informe solo vamos a dentrar en el canal de temporizacion de cache (cahce timing side-channel), el cual es utilizado por Meltdown y Spectre.
                                                                   %ref[casos de canales laterales]
-%ref: Introduction to Side-Channel Attacks; Paul Kocher, Joshua Jaffe, Benjamin Jun. ---- 
+%ref2: Introduction to Side-Channel Attacks; Paul Kocher, Joshua Jaffe, Benjamin Jun. ---- 
 \subsection{Spectre}
 Spectre es una vulnerabilidad que explota la ejecución especulativa para engañar al procesador y hacer que acceda a datos sensibles en la memoria, rompiendo el aislamiento entre procesos.
 \newline Afecta casi todos los procesadores modernos (Intel, AMD, ARM).
@@ -130,7 +131,7 @@ Los procesadores Intel Skylake-SP para servidores incluyen una función de prote
 \newline Meltdown-PK es un ataque que evade las restricciones de lectura y escritura impuestas por PKU. Aunque un atacante no tenga permisos para modificar los permisos de acceso con la instrucción wrpkru, puede explotar la ejecución especulativa del procesador para acceder temporalmente a datos protegidos y filtrarlos a través de un canal encubierto.
 
 \section{Mitigaciones}
-Las vulnerabilidades de Spectre y Meltdown surgen como consecuencia directa de optimizaciones en los procesadores modernos. Aunque estas tecnicas se enfocan en mejorar el rendimiento, tambien han introducido riesgos de seguridad que han permitido el desarrollo de ataques capaces de comprometer la seguridad de los sistemas.
+Las vulnerabilidades de Spectre \cite{spectre} y Meltdown \cite{meltdown} surgen como consecuencia directa de optimizaciones en los procesadores modernos. Aunque estas tecnicas se enfocan en mejorar el rendimiento, tambien han introducido riesgos de seguridad que han permitido el desarrollo de ataques capaces de comprometer la seguridad de los sistemas.
 
 Dado que el problema esta relacionado con el diseño de la arquitectura de los procesadores, no tendremos una solucion definitiva hasta que el hardware sea modificado. Sin embargo, debido al tiempo que toma el desarrollo y fabricacion de nuevos chips, podrian pasar varios años antes de que las futuras generaciones de CPUs solucionen completamente el problema.
 
@@ -175,7 +176,7 @@ Traducir los mapeos puede ser costoso, por lo que el hardware tiene un búfer de
 
 \subsection{Retpoline}
 El nombre Retpoline es un acrónimo de “return” (retorno) y “trampoline” (trampolín). En este contexto, un trampolin es un pequeño fragmento de codigo invocado como funcion, que realiza una tarea breve y, a diferencia de una llamada a funcion comun, no regresa a su llamador despues de la ejecución, sino que salta a otra ubicacion, como se muestra en la Figura 5
-. Si el destino del salto del trampolin es una funcion, al retornar, dicha funcion regresara al llamador original del trampolin.
+. Si el destino del salto del trampolin es una funcion, al retornar, dicha funcion regresara al llamador original del trampolin.\cite{retpoline1}\cite{retpoline2}
 \begin{figure}[h]
   \centering
   \includegraphics[width=\linewidth]{../retpoline.jpg}
@@ -184,13 +185,18 @@ El nombre Retpoline es un acrónimo de “return” (retorno) y “trampoline”
 
 Retpoline fue desarrollado por Google para mitigar los ataques Spectre-BTB. Su objetivo es evitar que este tipo de ataques manipulen el Branch Target Buffer (BTB) y desvien la ejecucion especulativa hacia una direccion arbitraria. Para ello, Retpoline reemplaza las bifurcaciones indirectas con una secuencia especial de instrucciones basada en llamadas y retornos, asegurando que la ejecucion especulativa permanezca en un bucle inofensivo dentro del Return Stack Buffer (RSB). Esto impide que un atacante manipule las predicciones de bifurcaciones para ejecutar codigo malicioso.
 
-Para lograr esto, Retpoline aprovecha la forma en que los procesadores gestionan las llamadas y retornos de funciones. Al utilizar una instruccion call hacia un trampolin, se llena el RSB con una direccion de retorno controlada. Cuando el procesador especula sobre el retorno, en lugar de seguir una prediccion potencialmente manipulada desde el BTB, sigue la direccion almacenada en el RSB y ejecuta un bucle de instrucciones seguras.
-%https://www.tandfonline.com/doi/epdf/10.1080/02564602.2018.1531072?needAccess=true
+Para lograr esto, Retpoline aprovecha la forma en que los procesadores gestionan las llamadas y retornos de funciones. Al utilizar una instruccion call hacia un trampolin, se llena el RSB con una direccion de retorno controlada. Cuando el procesador especula sobre el retorno, en lugar de seguir una prediccion potencialmente manipulada desde el BTB, sigue la direccion almacenada en el RSB y ejecuta un bucle de instrucciones seguras.\cite{retpoline1}\cite{retpoline2}
 
 \section{conclusion}
 Aprobanos =D, muchas gracias.
 
 \begin{thebibliography}{2}
+\bibitem{ref1} Hennessy, J. L., & Patterson, D. A. (2006). Computer Architecture: A Quantitative Approach (4a ed.). Morgan Kaufmann.
+
+\bibitem{meltdown} Lipp, M., Schwarz, M., Gruss, D., Prescher, T., Haas, W., Fogh, A., Horn, J., Mangard, S., Kocher, P., Genkin, D., Yarom, Y., & Hamburg, M. (2018). Meltdown: Reading Kernel Memory from User Space. In *27th USENIX Security Symposium (USENIX Security 18)*.
+\bibitem{spectre} Kocher, P., Horn, J., Fogh, A., Genkin, D., Gruss, D., Haas, W., Hamburg, M., Lipp, M., Mangard, S., Prescher, T., Schwarz, M., & Yarom, Y. (2019). Spectre Attacks: Exploiting Speculative Execution. In *40th IEEE Symposium on Security and Privacy (S\&P'19)*.
+\bibitem{retpoline1} Chen, B., Wu, Q., Tan, Y., Yang, L., & Zou, P. (2018). Exploration for software mitigation to spectre attacks of poisoning indirect branches. IETE Technical Review, 35(sup1), 119–127. https://doi.org/10.1080/02564602.2018.1531072
+\bibitem{retpoline2} M. F. Abdul Kadir, J. K. Wong, F. Ab Wahab, A. F. A. Abidin Bharun, M. A. Mohamed and A. H. Zakaria, "Retpoline Technique for Mitigating Spectre Attack," 2019 6th International Conference on Electrical and Electronics Engineering (ICEEE), Istanbul, Turkey, 2019, pp. 96-101, doi: 10.1109/ICEEE2019.2019.00026.
 
 \end{thebibliography}
 

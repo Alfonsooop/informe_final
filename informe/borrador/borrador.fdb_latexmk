@@ -1,12 +1,12 @@
 # Fdb version 4
-["pdflatex"] 1738705350.84414 "/home/vaky/Documentos/FIUBA/materias°1/Orga/tp-final/informe_final/informe/borrador/borrador.tex" "borrador.pdf" "borrador" 1738705351.87726 2
+["pdflatex"] 1738714564.41365 "/home/vaky/Documentos/FIUBA/materias°1/Orga/tp-final/informe_final/informe/borrador/borrador.tex" "borrador.pdf" "borrador" 1738714565.67837 2
   "../codigo_c.png" 1738512298.99681 4541 264ef9c3800b2899846809e9239d32a6 ""
   "../isolation-page.png" 1738594627.64431 3887 51d9fcf7e565154a444b12aa4e255ae2 ""
   "../kpti-meltdown.png" 1738690472.0185 57719 5ff9ea41c59026239a658885173bc580 ""
   "../retpoline.jpg" 1738601512.81542 34252 f497e7fac28713d489c80675e01aee72 ""
   "../rings.jpg" 1738280857.43077 151051 91bcb225a36bf60773b5b082838b9e85 ""
   "/etc/texmf/web2c/texmf.cnf" 1737577489.00776 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/vaky/Documentos/FIUBA/materias°1/Orga/tp-final/informe_final/informe/borrador/borrador.tex" 1738705317.96178 25135 d8f149e226b83aa4b776577f2e9478f5 ""
+  "/home/vaky/Documentos/FIUBA/materias°1/Orga/tp-final/informe_final/informe/borrador/borrador.tex" 1738714562.47617 26814 b913f7d89154e7ed8d78a157bdef904a ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/adobe/helvetic/phvb7t.tfm" 1136768653 2240 eb56c13537f4d8a0bd3fafc25572b1bd ""
@@ -83,8 +83,8 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1707919699 40399 f2c302f7d2af602abb742093540a5834 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1737577530.81474 5472669 54eaf61a88b6b7896ebd0dac973cb29c ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1737577591 8213495 4274b72555071de25e3b65955fc43f9f ""
-  "borrador.aux" 1738705351.74714 3803 98ab991b8470c8de7aaf912ab63935ba "pdflatex"
-  "borrador.tex" 1738705317.96178 25135 d8f149e226b83aa4b776577f2e9478f5 ""
+  "borrador.aux" 1738714565.49707 4039 a9ace1597829fd8b1ca0d98dce9a6237 "pdflatex"
+  "borrador.tex" 1738714562.47617 26814 b913f7d89154e7ed8d78a157bdef904a ""
   (generated)
   "borrador.aux"
   "borrador.log"
