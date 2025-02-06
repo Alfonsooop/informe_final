@@ -40,7 +40,7 @@
 
 \section{Optimizaciones}
 
-El rendimiento de los procesadores modernos ha mejorado gracias a varias técnicas. Como ya no es tan fácil seguir reduciendo el tamaño de los transistores o aumentar la frecuencia del reloj, se han buscado otras soluciones a nivel de arquitectura. La clave está en el paralelismo: optimizar y extender las rutas de instrucciones para ejecutar más operaciones al mismo tiempo dentro de un hilo, además de aumentar la cantidad de núcleos físicos y lógicos en un procesador \cite{paralelismo}.
+El rendimiento de los procesadores modernos ha mejorado gracias a varias técnicas. Como ya no es tan fácil seguir reduciendo el tamaño de los transistores o aumentar la frecuencia del reloj, se han buscado otras soluciones a nivel de arquitectura. La clave está en el paralelismo\cite{paralelismo}: optimizar y extender las rutas de instrucciones para ejecutar más operaciones al mismo tiempo dentro de un hilo, además de aumentar la cantidad de núcleos físicos y lógicos en un procesador \cite{paralelismo}.
 
 Las optimizaciones clave de los procesadores modernos son: la \textbf{ejecución especulativa}, \textbf{ejecución fuera de orden} y la \textbf{predicción de bifurcaciones} (Branch Prediction) \cite{ref}.  
 
@@ -67,7 +67,7 @@ En la Fig. 1 se pueden apreciar 4 anillos de seguridad en las arquitecturas x86,
 \newline
 Cada modo tiene una región de memoria mapeada diferente; ese aislamiento está dado por la \textbf{virtualización de la memoria} \cite{Virtualizacion}. Por lo tanto, el modo usuario no puede acceder a la misma información que el modo kernel, al menos de manera directa.
 
-El \textbf{modo usuario} corresponde al anillo 3, el cual solo ejecuta código a nivel software. Es decir, está aislado tanto del sistema operativo como del kernel; sus recursos son limitados y, por cada intento de modificación de memoria, manejo de archivos o contacto con el hardware, se realiza una \textbf{syscall}. Estas llamadas al sistema permiten al programa cambiar al modo kernel, dejando que el sistema operativo ejecute las instrucciones necesarias y luego vuelva al modo usuario sin violar la seguridad.
+El \textbf{modo usuario} corresponde al anillo 3, el cual solo ejecuta código a nivel software. Es decir, está aislado tanto del sistema operativo como del kernel; sus recursos son limitados y, por cada intento de modificación de memoria, manejo de archivos o contacto con el hardware, se realiza una \textbf{syscall}\cite{syscall}. Estas llamadas al sistema permiten al programa cambiar al modo kernel, dejando que el sistema operativo ejecute las instrucciones necesarias y luego vuelva al modo usuario sin violar la seguridad.
 \newline
 De aquí podemos deducir que, en el anillo de nivel 0, se ejecuta únicamente código a nivel kernel. Este nivel es administrado por el \textbf{modo kernel} y es el nivel de seguridad más importante. El modo kernel tiene contacto directo con el hardware, es decir, tiene acceso a todo el mapeado de la memoria, incluidas las tablas de páginas, donde se encuentra nuestra información más sensible, como contraseñas, credenciales y demás datos privados.
 \newline
@@ -150,7 +150,7 @@ Mientras tanto, se han desarrollado diversas mitigaciones a nivel de software y 
 
 \subsection{Aislamiento de Tablas de Páginas y Aleatoridad} El kernel se encarga de establecer tablas de páginas para controlar la asignación entre una dirección virtual y una dirección física. El acceso entre el núcleo y el espacio de usuario también se controla mediante las tablas de páginas. Una página que está mapeada para el kernel no es accesible desde el espacio de usuario, aunque el núcleo normalmente puede acceder al espacio de usuario.
 
-Traducir los mapeos puede ser costoso, por lo que el hardware tiene un búfer de traducción de direcciones (TLB) para almacenar asignaciones. A veces es necesario eliminar las asignaciones antiguas (invalidar el TLB), pero hacerlo es costoso, por lo que el código se escribe para minimizar tales llamadas. Un truco aquí es mantener siempre las tablas de páginas del núcleo mapeadas cuando los procesos de usuario se están ejecutando. Los permisos de la tabla de páginas impiden que el espacio de usuario acceda a las asignaciones del kernel, pero el núcleo puede acceder a ellas inmediatamente cuando se realiza una llamada al sistema.
+Traducir los mapeos puede ser costoso, por lo que el hardware tiene un búfer de traducción de direcciones\cite{TLB} (TLB) para almacenar asignaciones. A veces es necesario eliminar las asignaciones antiguas (invalidar el TLB), pero hacerlo es costoso, por lo que el código se escribe para minimizar tales llamadas. Un truco aquí es mantener siempre las tablas de páginas del núcleo mapeadas cuando los procesos de usuario se están ejecutando. Los permisos de la tabla de páginas impiden que el espacio de usuario acceda a las asignaciones del kernel, pero el núcleo puede acceder a ellas inmediatamente cuando se realiza una llamada al sistema.
 
 Exploits como Meltdown demostraron que este método de mantener las tablas de páginas del kernel disponibles en el espacio de usuario es vulnerable. Si bien no permite directamente la filtración de información del núcleo, puede ser explotado por atacantes. Estos generan intentos de lectura sobre dichas páginas; al no contar con los permisos necesarios, la CPU bloquea el programa por seguridad (ya que se está ejecutando en modo usuario). Sin embargo, la CPU prebusca los datos de todas formas y no los desecha, por lo que quedan en la caché. Este comportamiento es aprovechado por los atacantes para medir el tiempo de acceso a los datos prebuscados y, de esta manera, llevar a cabo un ataque de canal lateral basado en caché.
 
@@ -164,7 +164,7 @@ Exploits como Meltdown demostraron que este método de mantener las tablas de p�
 
 De esta manera, no solo se aísla el acceso a las páginas del kernel con KPTI y KASLR, sino que también se asegura que la ubicación del kernel en memoria sea impredecible en cada arranque.
 
-Sin embargo, aunque estas técnicas reducen significativamente la efectividad de ataques como Meltdown y Spectre, no son soluciones definitivas. Ataques de canal lateral más sofisticados pueden seguir filtrando información del kernel a pesar de estas mitigaciones, lo que ha llevado a la investigación de nuevas estrategias de defensa, tanto en software como en hardware.
+Sin embargo, aunque estas técnicas reducen significativamente la efectividad de ataques como Meltdown y Spectre, no son soluciones definitivas. Ataques de canal lateral más sofisticados pueden seguir filtrando información del kernel a pesar de estas mitigaciones\cite{Exploits-Parches}, lo que ha llevado a la investigación de nuevas estrategias de defensa, tanto en software como en hardware.
 
 \subsection{Retpoline} El nombre Retpoline es un acrónimo de “return” (retorno) y “trampoline” (trampolín). En este contexto, un trampolín es un pequeño fragmento de código invocado como función, que realiza una tarea breve y, a diferencia de una llamada a función común, no regresa a su llamador después de la ejecución, sino que salta a otra ubicación, como se muestra en la Fig. 5. Si el destino del salto del trampolín es una función, al retornar, dicha función regresará al llamador original del trampolín.\cite{retpoline1}\cite{retpoline2}
 
@@ -178,7 +178,7 @@ Para lograr esto, Retpoline aprovecha la forma en que los procesadores gestionan
 El informe destaca cómo las optimizaciones en los procesadores modernos, como la ejecución especulativa, la predicción de bifurcaciones o la ejecución fuera de orden, han mejorado el rendimiento de nuestros sistemas, pero también han abierto la puerta a diferentes vulnerabilidades. Spectre y Meltdown son ejemplos de cómo estas técnicas pueden ser explotadas para acceder a información confidencial, poniendo en riesgo la integridad y la privacidad de los datos. Aunque se han implementado diferentes mitigaciones, muchas de estas afectan significativamente el rendimiento. Por lo tanto, es esencial lograr un equilibrio entre la eficiencia de los procesadores y la protección de los sistemas frente a nuevos riesgos, asegurando la seguridad de los datos mientras la tecnología continúa avanzando. Es muy importante que los fabricantes y desarrolladores trabajen en soluciones innovadoras y colaboren para enfrentar estas amenazas, garantizando así que la evolución tecnológica sea tanto segura como eficiente.
 
 
-\begin{thebibliography}{2}
+\begin{thebibliography}{9}
 
 \bibitem{ref} Hennessy, J. L., & Patterson, D. A. (2006). Computer Architecture: A Quantitative Approach (4a ed.). Morgan Kaufmann.
 \bibitem{meltdown} Lipp, M., Schwarz, M., Gruss, D., Prescher, T., Haas, W., Fogh, A., Horn, J., Mangard, S., Kocher, P., Genkin, D., Yarom, Y. y Hamburg, M. (2018). Meltdown: Reading Kernel Memory from User Space. In *27th USENIX Security Symposium (USENIX Security 18)*.
@@ -196,8 +196,8 @@ El informe destaca cómo las optimizaciones en los procesadores modernos, como l
 \bibitem{KASLR} KASLR in the age of MicroVMs, 2022, [Disponible]: \url{https://www.cc0x1f.net/publications/kaslr.pdf}
 \bibitem{PCID} Process Context IDentifiers, [Disponible]: \url{https://www.kernel.org/doc/Documentation/x86/pti.txt}, \url{https://bit.ly/pciddoc}
 
-%\bibitem{Exploits-Parches} Linux kernel exploit development, 2022. [Disponible]: \url{https://breaking-bits.gitbook.io/breaking-bits/exploit-development/linux-kernel-exploit-development}
-%\bibitem{TLB} Memory system, 2016, Sarah L. Harris, David Money Harris, in Digital Design and Computer Architecture, 2016. [Papers]:\url{https://www.sciencedirect.com/topics/computer-science/translation-lookaside-buffer}
+\bibitem{Exploits-Parches} Linux kernel exploit development, 2022. [Disponible]: \url{https://breaking-bits.gitbook.io/breaking-bits/exploit-development/linux-kernel-exploit-development}
+\bibitem{TLB} Memory system, 2016, Sarah L. Harris, David Money Harris, in Digital Design and Computer Architecture, 2016. [Papers]:\url{https://www.sciencedirect.com/topics/computer-science/translation-lookaside-buffer}
 \bibitem{retpoline1} Chen, B., Wu, Q., Tan, Y., Yang, L., & Zou, P. (2018). Exploration for software mitigation to spectre attacks of poisoning indirect branches. IETE Technical Review, 35(sup1), 119–127. https://doi.org/10.1080/02564602.2018.1531072
 \bibitem{retpoline2} M. F. Abdul Kadir, J. K. Wong, F. Ab Wahab, A. F. A. Abidin Bharun, M. A. Mohamed and A. H. Zakaria, "Retpoline Technique for Mitigating Spectre Attack," 2019 6th International Conference on Electrical and Electronics Engineering (ICEEE), Istanbul, Turkey, 2019, pp. 96-101, doi: 10.1109/ICEEE2019.2019.00026.
 

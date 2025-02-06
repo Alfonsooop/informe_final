@@ -1,13 +1,15 @@
 \relax 
-\providecommand\babel@aux[2]{}
+\providecommand \babel@aux [2]{\global \let \babel@toc \@gobbletwo }
 \@nameuse{bbl@beforestart}
 \catcode `"\active 
 \catcode `<\active 
 \catcode `>\active 
 \@nameuse{es@quoting}
 \citation{paralelismo}
+\citation{paralelismo}
 \citation{ref}
 \citation{Virtualizacion}
+\citation{syscall}
 \babel@aux{spanish}{}
 \@writefile{toc}{\contentsline {section}{\numberline {1}Introducción}{1}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {2}Optimizaciones}{1}{}\protected@file@percent }
@@ -18,18 +20,19 @@
 \citation{spectre}
 \citation{spectre}
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces \relax \fontsize  {9bp}{10bp}\selectfont  Distribución jerárquica de los privilegios.}}{2}{}\protected@file@percent }
-\newlabel{fig:etiqueta}{{1}{2}{}{}{}}
+\newlabel{fig:etiqueta}{{1}{2}{}{figure.1}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {4}Vulnerabilidades}{2}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Spectre}{2}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.1}\textbf  {Spectre-PHT}}{2}{}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces \relax \fontsize  {9bp}{10bp}\selectfont  Fragmento de código en C ilustrando el concepto de manipulación de predicción de saltos.}}{2}{}\protected@file@percent }
-\newlabel{fig:etiqueta}{{2}{2}{}{}{}}
+\newlabel{fig:etiqueta}{{2}{2}{}{figure.2}{}}
 \citation{meltdown}
 \citation{meltdown}
 \citation{Meltdown variantes}
 \citation{Meltdown variantes}
 \citation{spectre}
 \citation{meltdown}
+\citation{TLB}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.2}\textbf  {Spectre-BTB}}{3}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Meltdown}{3}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.1}\textbf  {Meltdown-P}}{3}{}\protected@file@percent }
@@ -41,6 +44,7 @@
 \citation{Aleatorización}
 \citation{PCID}
 \citation{KASLR}
+\citation{Exploits-Parches}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.1}\textbf  {Mitigación Meltdown}}{4}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.2}\textbf  {KASLR}}{4}{}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces \relax \fontsize  {9bp}{10bp}\selectfont  Ilustración de cómo Meltdown intenta vulnerar las tablas de páginas antes y después de utilizar KPTI.}}{4}{}\protected@file@percent }
@@ -63,10 +67,12 @@
 \bibcite{Side Channel tipos}{12}
 \bibcite{KASLR}{13}
 \bibcite{PCID}{14}
-\bibcite{retpoline1}{15}
-\bibcite{retpoline2}{16}
+\bibcite{Exploits-Parches}{15}
+\bibcite{TLB}{16}
+\bibcite{retpoline1}{17}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Retpoline}{5}{}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces \relax \fontsize  {9bp}{10bp}\selectfont  Trampoline se refiere a un fragmento de código que saltaría a otra ubicación después de terminar la ejecución en lugar de regresar al llamador original.}}{5}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{5}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{Referencias}{5}{}\protected@file@percent }
+\bibcite{retpoline2}{18}
 \gdef \@abspage@last{6}
